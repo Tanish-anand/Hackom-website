@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Fullscreen styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        /* Transition effect */
+        .transition {
+            transition: opacity 0.01s ease-in;
+            opacity: 0.1;
+        }
+
+        .fade-out {
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoPlayer" src="animation.mp4" autoplay muted></video>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('videoPlayer');
+
+            video.addEventListener('ended', () => {
+                // Add transition effect
+                document.body.classList.add('transition');
+                setTimeout(() => {
+                    l = localStorage.getItem("logged")
+                    console.log(l)
+                    if(l){
+                        window.location.href = 'homepage.html'; 
+                    }else{
+                        window.location.href = "log.html"
+                    }
+                    
+                }, 1000); 
+            });
+        });
+    </script>
+</body>
+</html>

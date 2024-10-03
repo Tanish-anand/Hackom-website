@@ -1,0 +1,246 @@
+<!-- Page title displayed at the top of the page -->
+<link rel="stylesheet" href="fer.css">
+<style>@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700&display=swap");
+
+   body {
+     margin: 40px 0;
+     font-family: "Montserrat", sans-serif;;
+     font-size: 14px;
+     font-weight: 500;
+     background-color: #ffffff;
+     -webkit-font-smoothing: antialiased;
+     
+   }
+   .page-title {
+     font-size: 35px;
+     text-transform: uppercase;
+     color: #fff;
+     text-align: center;
+     letter-spacing: 3px;
+   }
+   .container {
+     padding: 40px 80px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+   }
+   .card-info * {
+     position: relative;
+     z-index: 1;
+   }
+   .card-wrap {
+     margin: 20px;
+     transform: perspective(800px);
+     transform-style: preserve-3d;
+     cursor: pointer;
+   }
+   .card-wrap:hover .card-info {
+     transform: translateY(0);
+   }
+   .card-wrap:hover .card-info p {
+     opacity: 1;
+   }
+   .card-wrap:hover .card-info, .card-wrap:hover .card-info p {
+     transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+   }
+   .card-wrap:hover .card-info:after {
+     transition: 5s cubic-bezier(0.23, 1, 0.32, 1);
+     opacity: 1;
+     transform: translateY(0);
+   }
+   .card-wrap:hover .card-bg {
+     transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
+     opacity: 0.8;
+   }
+   .card-wrap:hover .card {
+     transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1);
+     box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset white 0 0 0 6px;
+   }
+   .card {
+     position: relative;
+     flex: 0 0 240px;
+     width: 350px;
+     height: 450px;
+     background-color: #333;
+     overflow: hidden;
+     border-radius: 10px;
+     box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+     transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+   }
+   .card-bg {
+     opacity: 0.5;
+     position: absolute;
+     top: -20px;
+     left: -20px;
+     width: 100%;
+     height: 100%;
+     padding: 20px;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+     transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+     pointer-events: none;
+   }
+   .card-info {
+     padding: 20px;
+     position: absolute;
+     bottom: 0;
+     color: #fff;
+     transform: translateY(50%);
+     transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+   }
+   .card-info p {
+     opacity: 0;
+     text-shadow: black 0 2px 3px;
+     transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+   }
+   .card-info:after {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 0;
+     width: 100%;
+     height: 100%;
+     background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+     background-blend-mode: overlay;
+     opacity: 0;
+     transform: translateY(100%);
+     transition: 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+   }
+   .card-info h1 {
+     font-size: 30px;
+     font-weight: 700;
+     text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+   }
+   
+   
+   /* Subscribe button styles */
+   .subscribe-btn {
+     position: fixed;
+     bottom: 10px;
+     right: 10px;
+     color: var(--accent-color);
+   }
+   
+   /* SVG inside subscribe button */
+   .subscribe-btn svg {
+     height: 60px;
+     width: 60px;
+   }
+   
+   /* Floating YouTube Button Styling */
+   .youtube-button {
+     position: fixed;
+     bottom: 20px; /* Distance from the bottom */
+     right: 20px; /* Distance from the right */
+     background-color: #ff0000; /* YouTube red color */
+     color: white;
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-decoration: none;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     transition: all 0.3s ease;
+     z-index: 2;
+   }
+   
+   /* Icon Styling */
+   .youtube-button i {
+     font-size: 24px;
+   }
+   
+   /* Hover Effect */
+   .youtube-button:hover {
+     background-color: #e60000; /* Darker shade of red */
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+     transform: translateY(-2px); /* Slight upward movement */
+   }</style>
+
+
+
+<!-- Container for all the cards; using flexbox for layout -->
+<div class="container">
+
+ <!-- First card: Rajasthan -->
+ <div class="card-wrap">
+   <!-- Card container -->
+   <div class="card">
+     <!-- Card background image, using inline style to set the image -->
+     <div class="card-bg" style="background-image: url(https://img.freepik.com/premium-photo/calculator-stick-with-word-subsidy-concept-getting-subsidies-business-concept_694006-1311.jpg  );">
+     </div>
+     <!-- Information about the card (title and description) -->
+     <a href="calc.html"><div class="card-info">
+       <h1>Subsidy Calculator</h1>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos cumque voluptatibus debitis veniam odit est
+         molestiae dolores deserunt similique porro!</p>
+     </div></a>
+   </div>
+ </div>
+
+ <!-- Second card: Himachal -->
+ <div class="card-wrap">
+   <div class="card">
+     <div class="card-bg" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv96m63epbUwtIS2x-USVfP6Uy28G6MJXinQ&s);">
+     </div>
+     <a href="finduser.html"><div class="card-info">
+       <h1>Sale & Purchase</h1>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos cumque voluptatibus debitis veniam odit est
+         molestiae dolores deserunt similique porro!</p>
+     </div></a>
+   </div>
+ </div>
+
+ <!-- Third card: Uttrakhand -->
+ <!-- <div class="card-wrap">
+   <div class="card">
+     <div class="card-bg" style="background-image: url(https://images.pexels.com/photos/27970045/pexels-photo-27970045/free-photo-of-nanital.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
+     </div>
+     <div class="card-info">
+       <h1>Uttrakhand</h1>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos cumque voluptatibus debitis veniam odit est
+         molestiae dolores deserunt similique porro!</p>
+     </div>
+   </div>
+ </div> -->
+
+ <!-- Fourth card: Kerala -->
+ <!-- <div class="card-wrap">
+   <div class="card">
+     <div class="card-bg" style="background-image: url(https://images.pexels.com/photos/3370598/pexels-photo-3370598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
+     </div>
+     <div class="card-info">
+       <h1>Kerala</h1>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos cumque voluptatibus debitis veniam odit est
+         molestiae dolores deserunt similique porro!</p>
+     </div>
+   </div>
+ </div> -->
+
+ <!-- Fifth card: Kashmir -->
+ <!-- <div class="card-wrap">
+   <div class="card">
+     <div class="card-bg" style="background-image: url(https://images.pexels.com/photos/26752641/pexels-photo-26752641/free-photo-of-traditional-wooden-houseboats-boats-on-dal-lake-between-mountains-in-kashmir.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);">
+     </div>
+     <div class="card-info">
+       <h1>Kashmir</h1>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos cumque voluptatibus debitis veniam odit est
+         molestiae dolores deserunt similique porro!</p>
+     </div>
+   </div>
+ </div> -->
+
+</div>
+
+<!-- Floating YouTube Button -->
+
+</a>
+<script>VanillaTilt.init(document.querySelectorAll(".card"), {
+   glare: true,
+   "max-glare": 0.5,
+ max: 12
+});
+</script>

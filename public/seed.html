@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Finder</title>
+    <link rel="stylesheet" href="seed.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Seed Finder</h1>
+        <form id="seedForm">
+            <label for="year">Notified Year:</label>
+            <input type="text" id="year" required>
+
+            <label for="state">State/UT:</label>
+            <select id="state" required>
+                <option value="">Select State/UT</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <!-- Add more states as needed -->
+            </select>
+
+            <label for="cropGroup">Crop Group:</label>
+            <select id="cropGroup" required>
+                <option value="">Select Crop Group</option>
+                <option value="Cereal">Cereal</option>
+                <option value="Pulses">Pulses</option>
+                <option value="Oilseeds">Oilseeds</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Flowers">Flowers</option>
+                <option value="Medicinal">Medicinal and Aromatic</option>
+                <option value="Trees">Trees</option>
+                <option value="Grasses">Grasses</option>
+                <option value="Herbs">Herbs and Spices</option>
+            </select>
+
+            <label for="specificGroup">Specific Group:</label>
+            <input type="text" id="specificGroup" required>
+
+            <button type="submit">Search Seeds</button>
+        </form>
+        
+        <div id="result"></div>
+    </div>
+
+    <script src="seed.js"></script>
+</body>
+</html>

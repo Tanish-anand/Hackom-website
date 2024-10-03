@@ -1,0 +1,243 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subsidy Calculator</title>
+    <style>/* styles.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .calculator-container {
+            background-color: #00000025;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 1476px;
+            height: 685px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="number"] {
+            width: 75%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #218838;
+        }
+        
+        .result {
+            margin-top: 20px;
+        }
+        
+        .result h2 {
+            font-size: 1.2em;
+            color: #333;
+        }
+        </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Subsidy Calculator</h1>
+        <form id="subsidyForm">
+            <div class="form-group">
+                <label for="income">Annual Income:</label>
+                <input type="number" id="income" placeholder="Enter your income" required>
+            </div>
+            <div class="form-group">
+                <label for="subsidyRate">Subsidy Rate (%):</label>
+                <input type="number" id="subsidyRate" placeholder="Enter subsidy rate" required>
+            </div>
+            <button type="button" onclick="calculateSubsidy()">Calculate Subsidy</button>
+        </form>
+        <div class="result">
+            <h2>Calculated Subsidy: <span id="subsidyAmount">₹0</span></h2>
+        </div>
+    </div>
+    <script>function calculateSubsidy() {
+        // Get input values
+        const income = document.getElementById('income').value;
+        const subsidyRate = document.getElementById('subsidyRate').value;
+    
+        // Calculate subsidy
+        const subsidy = (income * subsidyRate) / 100;
+    
+        // Display result
+        document.getElementById('subsidyAmount').innerText = `₹${subsidy.toFixed(2)}`;
+    }
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subsidy Calculator</title>
+    <style>
+        /* styles.css */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 500px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .calculator-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 1em;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .result span {
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        .footer-text {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Subsidy Calculator</h1>
+        <form id="subsidyForm">
+            <div class="form-group">
+                <label for="income">Annual Income:</label>
+                <input type="number" id="income" placeholder="Enter your income" required>
+            </div>
+            <div class="form-group">
+                <label for="subsidyRate">Subsidy Rate (%):</label>
+                <input type="number" id="subsidyRate" placeholder="Enter subsidy rate" required>
+            </div>
+            <button type="button" onclick="calculateSubsidy()">Calculate Subsidy</button>
+        </form>
+        <div class="result">
+            Calculated Subsidy: <span id="subsidyAmount">₹0</span>
+        </div>
+        <div class="footer-text">
+            *Subsidy calculation is based on provided data
+        </div>
+    </div>
+
+    <script>
+        function calculateSubsidy() {
+            // Get input values
+            const income = document.getElementById('income').value;
+            const subsidyRate = document.getElementById('subsidyRate').value;
+
+            // Calculate subsidy
+            const subsidy = (income * subsidyRate) / 100;
+
+            // Display result
+            document.getElementById('subsidyAmount').innerText = `₹${subsidy.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
+

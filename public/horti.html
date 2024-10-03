@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Status Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px auto ;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+            
+        }
+
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+            margin: 12px auto ;
+        }
+
+        input:invalid {
+            border-color: #e74c3c;
+            margin: 12px auto ;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #229954;
+        }
+
+        button:active {
+            background-color: #1e8449;
+        }
+
+        .loading {
+            margin-top: 10px;
+            text-align: center;
+            color: #3498db;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                padding: 10px;
+            }
+
+            input {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Check Your Application Status</h1>
+        <form id="statusForm">
+            <label for="aadhaar">Aadhaar Number (12 digits):</label>
+            <input type="text" id="aadhaar" maxlength="12" placeholder="Enter Aadhaar Number" pattern="\d{12}" required>
+            <div id="aadhaarError" class="error">Aadhaar number must be 12 digits long.</div>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" placeholder="Enter Mobile Number" pattern="\d{10}" required>
+
+            <label for="year">Year of Application:</label>
+            <input type="number" id="year" placeholder="Enter Year" required>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" placeholder="Enter State" required>
+
+            <button type="submit">Check Status</button>
+            <div class="loading" id="loading" style="display: none;">Checking...</div>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('statusForm');
+        const aadhaarInput = document.getElementById('aadhaar');
+        const aadhaarError = document.getElementById('aadhaarError');
+        const loadingDiv = document.getElementById('loading');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const aadhaar = aadhaarInput.value;
+            const mobile = document.getElementById('mobile').value;
+            const year = document.getElementById('year').value;
+            const state = document.getElementById('state').value;
+
+            // Aadhaar validation: check if it's exactly 12 digits
+            if (aadhaar.length !== 12 || !/^\d{12}$/.test(aadhaar)) {
+                aadhaarError.style.display = 'block';
+                return;
+            } else {
+                aadhaarError.style.display = 'none';
+            }
+
+            // Show loading text
+            loadingDiv.style.display = 'block';
+            resultDiv.style.display = 'none';
+
+            // Simulate checking the application status (you would replace this with an actual API call)
+            setTimeout(() => {
+                loadingDiv.style.display = 'none'; // Hide loading text
+                const applicationStatus = checkApplicationStatus(aadhaar, mobile, year, state);
+                resultDiv.textContent = applicationStatus;
+                resultDiv.style.display = 'block';
+            }, 2000); // Simulate 2-second API response
+        });
+
+        // Simulated function to check application status
+        function checkApplicationStatus(aadhaar, mobile, year, state) {
+            return `Application Status: Successfully processed for ${state} in ${year} years`;
+        }
+    </script>
+</body>
+
+</html>

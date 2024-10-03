@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyers & Sellers in Your City</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #29b643;
+            color: #fff;
+            text-align: center;
+            padding: 1.5em 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px auto;
+            max-width: 900px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .location-form, .results {
+            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .location-form h2, .results h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #29b643;
+            margin-bottom: 20px;
+        }
+
+        .location-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form label {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        form select {
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        form select:focus {
+            border-color: #29b643;
+            outline: none;
+        }
+
+        form button {
+            background-color: #29b643;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #29b643;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        ul li span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        ul li .contact {
+            background-color: #29b643;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        ul li .contact:hover {
+            background-color: #29b643;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Find Buyers & Sellers of Machinery in Your City</h1>
+    </header>
+
+    <main>
+        <section class="location-form">
+            <h2>Select Your Location</h2>
+            <form id="location-form">
+                <label for="state">State:</label>
+                <select id="state" required>
+                    <option value="">Select State</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Bihar">Bihar</option>
+                </select>
+
+                <label for="city">City:</label>
+                <select id="city" required>
+                    <option value="">Select City</option>
+                </select>
+
+                <button type="submit">Show Buyers & Sellers</button>
+            </form>
+        </section>
+
+        <section class="results" id="results">
+            <h2>Buyers & Sellers in Your City</h2>
+            <div id="buyers">
+                <h3>Buyers</h3>
+                <ul id="buyers-list">
+                    <!-- Example item -->
+                    <li><span>John Doe</span> <span class="contact">Contact</span></li>
+                </ul>
+            </div>
+            <div id="sellers">
+                <h3>Sellers</h3>
+                <ul id="sellers-list">
+                    <!-- Example item -->
+                    <li><span>Jane Smith</span> <span class="contact">Contact</span></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+
+   
+
+    <script>document.addEventListener('DOMContentLoaded', function () {
+   
+        const buyers = [
+            // Maharashtra
+            { state: 'Maharashtra', city: 'Mumbai', name: 'Rajesh Kumar', contact: '9123456780', role: 'Buyer' },
+            { state: 'Maharashtra', city: 'Mumbai', name: 'Sneha Desai', contact: '9345678901', role: 'Buyer' },
+            { state: 'Maharashtra', city: 'Nagpur', name: 'Ajay Thakur', contact: '9345678902', role: 'Buyer' },
+            { state: 'Maharashtra', city: 'Pune', name: 'Neha Joshi', contact: '9512345678', role: 'Buyer' },
+            { state: 'Maharashtra', city: 'Pune', name: 'Rohit Patil', contact: '9734567890', role: 'Buyer' },
+            { state: 'Maharashtra', city: 'Nashik', name: 'Karan Suresh', contact: '9956789012', role: 'Buyer' },
+        
+            // Gujarat
+            { state: 'Gujarat', city: 'Ahmedabad', name: 'Anjali Patel', contact: '9876543210', role: 'Buyer' },
+            { state: 'Gujarat', city: 'Ahmedabad', name: 'Priya Desai', contact: '7654321098', role: 'Buyer' },
+            { state: 'Gujarat', city: 'Surat', name: 'Nisha Agarwal', contact: '6543210987', role: 'Buyer' },
+            { state: 'Gujarat', city: 'Vadodara', name: 'Sahil Mehta', contact: '6789012345', role: 'Buyer' },
+            { state: 'Gujarat', city: 'Vadodara', name: 'Deepak Patel', contact: '8901234567', role: 'Buyer' },
+            { state: 'Gujarat', city: 'Rajkot', name: 'Aditi Mehta', contact: '9123456789', role: 'Buyer' },
+        
+            // Uttar Pradesh
+            { state: 'Uttar Pradesh', city: 'Lucknow', name: 'Vivek Sharma', contact: '9812345678', role: 'Buyer' },
+            { state: 'Uttar Pradesh', city: 'Lucknow', name: 'Mohit Kumar', contact: '9000000000', role: 'Buyer' },
+            { state: 'Uttar Pradesh', city: 'Kanpur', name: 'Asha Yadav', contact: '9200000002', role: 'Buyer' },
+            { state: 'Uttar Pradesh', city: 'Agra', name: 'Priya Verma', contact: '9400000004', role: 'Buyer' },
+            { state: 'Uttar Pradesh', city: 'Agra', name: 'Suman Mishra', contact: '9600000006', role: 'Buyer' },
+            { state: 'Uttar Pradesh', city: 'Varanasi', name: 'Geeta Rani', contact: '9800000008', role: 'Buyer' },
+        
+            // Rajasthan
+            { state: 'Rajasthan', city: 'Jaipur', name: 'Suman Verma', contact: '9001234567', role: 'Buyer' },
+            { state: 'Rajasthan', city: 'Jaipur', name: 'Mohit Mehta', contact: '9201234567', role: 'Buyer' },
+            { state: 'Rajasthan', city: 'Udaipur', name: 'Nisha Patni', contact: '9401234567', role: 'Buyer' },
+            { state: 'Rajasthan', city: 'Jodhpur', name: 'Priyanka Bhatnagar', contact: '9601234567', role: 'Buyer' },
+            { state: 'Rajasthan', city: 'Jodhpur', name: 'Neelam Kumari', contact: '9801234567', role: 'Buyer' },
+            { state: 'Rajasthan', city: 'Kota', name: 'Vishal Yadav', contact: '9912345678', role: 'Buyer' },
+        
+            // Telangana
+            { state: 'Telangana', city: 'Hyderabad', name: 'Nisha Reddy', contact: '9012345678', role: 'Buyer' },
+            { state: 'Telangana', city: 'Hyderabad', name: 'Meena Devi', contact: '9234567890', role: 'Buyer' },
+            { state: 'Telangana', city: 'Warangal', name: 'Vinay Kumar', contact: '9456789012', role: 'Buyer' },
+            { state: 'Telangana', city: 'Nizamabad', name: 'Rohit Yadav', contact: '9678901234', role: 'Buyer' },
+            { state: 'Telangana', city: 'Nizamabad', name: 'Haritha Reddy', contact: '9890123456', role: 'Buyer' },
+            { state: 'Telangana', city: 'Khammam', name: 'Lavanya Kumar', contact: '9912345678', role: 'Buyer' },
+        
+            // Punjab
+            { state: 'Punjab', city: 'Chandigarh', name: 'Sameer Mehta', contact: '9988776655', role: 'Buyer' },
+            { state: 'Punjab', city: 'Chandigarh', name: 'Manpreet Singh', contact: '9765432109', role: 'Buyer' },
+            { state: 'Punjab', city: 'Amritsar', name: 'Amandeep Kaur', contact: '6543210987', role: 'Buyer' },
+            { state: 'Punjab', city: 'Ludhiana', name: 'Nikita Bansal', contact: '9321546789', role: 'Buyer' },
+            { state: 'Punjab', city: 'Ludhiana', name: 'Manisha Joshi', contact: '9112345678', role: 'Buyer' },
+            { state: 'Punjab', city: 'Jalandhar', name: 'Poonam Sethi', contact: '9000000001', role: 'Buyer' },
+        
+            // West Bengal
+            { state: 'West Bengal', city: 'Kolkata', name: 'Priya Singh', contact: '9345678901', role: 'Buyer' },
+            { state: 'West Bengal', city: 'Kolkata', name: 'Ravi Mukherjee', contact: '9323456780', role: 'Buyer' },
+            { state: 'West Bengal', city: 'Siliguri', name: 'Sanjay Roy', contact: '9012345672', role: 'Buyer' },
+            { state: 'West Bengal', city: 'Howrah', name: 'Aparna Das', contact: '7890123454', role: 'Buyer' },
+            { state: 'West Bengal', city: 'Howrah', name: 'Vikas Mukherjee', contact: '5678901236', role: 'Buyer' },
+            { state: 'West Bengal', city: 'Durgapur', name: 'Neelam Chatterjee', contact: '3456789018', role: 'Buyer' },
+        
+            // Karnataka
+            { state: 'Karnataka', city: 'Bangalore', name: 'Vikas Rao', contact: '9876543210', role: 'Buyer' },
+            { state: 'Karnataka', city: 'Bangalore', name: 'Rahul Patil', contact: '7654321098', role: 'Buyer' },
+            { state: 'Karnataka', city: 'Mysore', name: 'Kiran Kumar', contact: '5432109876', role: 'Buyer' },
+            { state: 'Karnataka', city: 'Mangalore', name: 'Suresh Shetty', contact: '3210987654', role: 'Buyer' },
+            { state: 'Karnataka', city: 'Mangalore', name: 'Vijay Kamath', contact: '1098765432', role: 'Buyer' },
+            { state: 'Karnataka', city: 'Hubli', name: 'Rajesh Hiremath', contact: '9876543211', role: 'Buyer' },
+        
+            // Haryana
+            { state: 'Haryana', city: 'Gurgaon', name: 'Aman Singh', contact: '9812345670', role: 'Buyer' },
+            { state: 'Haryana', city: 'Gurgaon', name: 'Nikhil Sharma', contact: '9000000000', role: 'Buyer' },
+            { state: 'Haryana', city: 'Karnal', name: 'Raj Kumar', contact: '9200000002', role: 'Buyer' },
+            { state: 'Haryana', city: 'Panipat', name: 'Ravi Mehta', contact: '9400000004', role: 'Buyer' },
+            { state: 'Haryana', city: 'Panipat', name: 'Karan Verma', contact: '9600000006', role: 'Buyer' },
+            { state: 'Haryana', city: 'Ambala', name: 'Deepak Yadav', contact: '9800000008', role: 'Buyer' },
+        
+            // Madhya Pradesh
+            { state: 'Madhya Pradesh', city: 'Indore', name: 'Vikram Singh', contact: '9123456780', role: 'Buyer' },
+            { state: 'Madhya Pradesh', city: 'Indore', name: 'Sakshi Sharma', contact: '9345678901', role: 'Buyer' },
+            { state: 'Madhya Pradesh', city: 'Bhopal', name: 'Ashish Joshi', contact: '9512345678', role: 'Buyer' },
+            { state: 'Madhya Pradesh', city: 'Jabalpur', name: 'Priti Gupta', contact: '9734567890', role: 'Buyer' },
+            { state: 'Madhya Pradesh', city: 'Gwalior', name: 'Kamal Sharma', contact: '9956789012', role: 'Buyer' },
+            { state: 'Madhya Pradesh', city: 'Ujjain', name: 'Anjali Yadav', contact: '9876543212', role: 'Buyer' },
+        ];
+        
+        const sellers = [
+            // Maharashtra
+            { state: 'Maharashtra', city: 'Mumbai', name: 'Anjali Sharma', contact: '8765432109', role: 'Seller' },
+            { state: 'Maharashtra', city: 'Mumbai', name: 'Karan Sinha', contact: '8654321098', role: 'Seller' },
+            { state: 'Maharashtra', city: 'Nagpur', name: 'Manish Gupta', contact: '8543210987', role: 'Seller' },
+            { state: 'Maharashtra', city: 'Pune', name: 'Neelam Patil', contact: '8432109876', role: 'Seller' },
+            { state: 'Maharashtra', city: 'Pune', name: 'Pratik Joshi', contact: '8321098765', role: 'Seller' },
+            { state: 'Maharashtra', city: 'Nashik', name: 'Siddharth Rane', contact: '8210987654', role: 'Seller' },
+        
+            // Gujarat
+            { state: 'Gujarat', city: 'Ahmedabad', name: 'Aarav Patel', contact: '7890123456', role: 'Seller' },
+            { state: 'Gujarat', city: 'Ahmedabad', name: 'Kajal Desai', contact: '6789012345', role: 'Seller' },
+            { state: 'Gujarat', city: 'Surat', name: 'Aditi Agarwal', contact: '5678901234', role: 'Seller' },
+            { state: 'Gujarat', city: 'Vadodara', name: 'Pavan Mehta', contact: '4567890123', role: 'Seller' },
+            { state: 'Gujarat', city: 'Vadodara', name: 'Dharmesh Patel', contact: '3456789012', role: 'Seller' },
+            { state: 'Gujarat', city: 'Rajkot', name: 'Parul Mehta', contact: '2345678901', role: 'Seller' },
+        
+            // Uttar Pradesh
+            { state: 'Uttar Pradesh', city: 'Lucknow', name: 'Ankit Gupta', contact: '8501234567', role: 'Seller' },
+            { state: 'Uttar Pradesh', city: 'Lucknow', name: 'Neha Sharma', contact: '8602345678', role: 'Seller' },
+            { state: 'Uttar Pradesh', city: 'Kanpur', name: 'Isha Yadav', contact: '8703456789', role: 'Seller' },
+            { state: 'Uttar Pradesh', city: 'Agra', name: 'Vivek Mehta', contact: '8804567890', role: 'Seller' },
+            { state: 'Uttar Pradesh', city: 'Agra', name: 'Raghav Mishra', contact: '8905678901', role: 'Seller' },
+            { state: 'Uttar Pradesh', city: 'Varanasi', name: 'Sonal Rani', contact: '9006789012', role: 'Seller' },
+        
+            // Rajasthan
+            { state: 'Rajasthan', city: 'Jaipur', name: 'Rahul Singh', contact: '9401234567', role: 'Seller' },
+            { state: 'Rajasthan', city: 'Jaipur', name: 'Pooja Yadav', contact: '9201234567', role: 'Seller' },
+            { state: 'Rajasthan', city: 'Udaipur', name: 'Deepak Kumawat', contact: '9601234567', role: 'Seller' },
+            { state: 'Rajasthan', city: 'Jodhpur', name: 'Ravi Bhatnagar', contact: '9901234567', role: 'Seller' },
+            { state: 'Rajasthan', city: 'Jodhpur', name: 'Ritika Kumari', contact: '9801234567', role: 'Seller' },
+            { state: 'Rajasthan', city: 'Kota', name: 'Nikhil Soni', contact: '9701234567', role: 'Seller' },
+        
+            // Telangana
+            { state: 'Telangana', city: 'Hyderabad', name: 'Srinivas Reddy', contact: '9012345679', role: 'Seller' },
+            { state: 'Telangana', city: 'Hyderabad', name: 'Lakshmi Devi', contact: '9234567891', role: 'Seller' },
+            { state: 'Telangana', city: 'Warangal', name: 'Karthik Kumar', contact: '9456789013', role: 'Seller' },
+            { state: 'Telangana', city: 'Nizamabad', name: 'Pavan Yadav', contact: '9678901235', role: 'Seller' },
+            { state: 'Telangana', city: 'Nizamabad', name: 'Jyothi Reddy', contact: '9890123457', role: 'Seller' },
+            { state: 'Telangana', city: 'Khammam', name: 'Srinivas Reddy', contact: '9912345679', role: 'Seller' },
+        
+            // Punjab
+            { state: 'Punjab', city: 'Chandigarh', name: 'Sukhwinder Singh', contact: '9988776644', role: 'Seller' },
+            { state: 'Punjab', city: 'Chandigarh', name: 'Gurjeet Singh', contact: '9765432108', role: 'Seller' },
+            { state: 'Punjab', city: 'Amritsar', name: 'Rajinder Kaur', contact: '6543210986', role: 'Seller' },
+            { state: 'Punjab', city: 'Ludhiana', name: 'Simran Kaur', contact: '9321546788', role: 'Seller' },
+            { state: 'Punjab', city: 'Ludhiana', name: 'Sonu Kumar', contact: '9112345677', role: 'Seller' },
+            { state: 'Punjab', city: 'Jalandhar', name: 'Ranjit Singh', contact: '9000000002', role: 'Seller' },
+        
+            // West Bengal
+            { state: 'West Bengal', city: 'Kolkata', name: 'Arjun Ghosh', contact: '9345678902', role: 'Seller' },
+            { state: 'West Bengal', city: 'Kolkata', name: 'Rani Dutta', contact: '9323456781', role: 'Seller' },
+            { state: 'West Bengal', city: 'Siliguri', name: 'Abhishek Roy', contact: '9012345673', role: 'Seller' },
+            { state: 'West Bengal', city: 'Howrah', name: 'Tanya Das', contact: '7890123455', role: 'Seller' },
+            { state: 'West Bengal', city: 'Howrah', name: 'Krishna Mukherjee', contact: '5678901237', role: 'Seller' },
+            { state: 'West Bengal', city: 'Durgapur', name: 'Rahul Chatterjee', contact: '3456789019', role: 'Seller' },
+        
+            // Karnataka
+            { state: 'Karnataka', city: 'Bangalore', name: 'Sunil Rao', contact: '9876543211', role: 'Seller' },
+            { state: 'Karnataka', city: 'Bangalore', name: 'Vikram Patil', contact: '7654321099', role: 'Seller' },
+            { state: 'Karnataka', city: 'Mysore', name: 'Prashant Kumar', contact: '5432109877', role: 'Seller' },
+            { state: 'Karnataka', city: 'Mangalore', name: 'Harshad Shetty', contact: '3210987655', role: 'Seller' },
+            { state: 'Karnataka', city: 'Mangalore', name: 'Anup Kamath', contact: '1098765433', role: 'Seller' },
+            { state: 'Karnataka', city: 'Hubli', name: 'Siddharth Ghosh', contact: '8901234564', role: 'Seller' },
+        
+            // Tamil Nadu
+            { state: 'Tamil Nadu', city: 'Chennai', name: 'Amit Raj', contact: '8791234567', role: 'Seller' },
+            { state: 'Tamil Nadu', city: 'Chennai', name: 'Priya Iyer', contact: '8680123456', role: 'Seller' },
+            { state: 'Tamil Nadu', city: 'Coimbatore', name: 'Naren Kumar', contact: '8579012345', role: 'Seller' },
+            { state: 'Tamil Nadu', city: 'Madurai', name: 'Karthik Balakrishnan', contact: '8468901234', role: 'Seller' },
+            { state: 'Tamil Nadu', city: 'Tiruchirappalli', name: 'Anand Srinivasan', contact: '8357890123', role: 'Seller' },
+            { state: 'Tamil Nadu', city: 'Tiruppur', name: 'Vishal Kumar', contact: '8246789012', role: 'Seller' },
+        
+            // Andhra Pradesh
+            { state: 'Andhra Pradesh', city: 'Visakhapatnam', name: 'Naveen Kumar', contact: '8134567890', role: 'Seller' },
+            { state: 'Andhra Pradesh', city: 'Vijayawada', name: 'Divya Reddy', contact: '8223456789', role: 'Seller' },
+            { state: 'Andhra Pradesh', city: 'Guntur', name: 'Kumar Choudhary', contact: '8312345678', role: 'Seller' },
+            { state: 'Andhra Pradesh', city: 'Nellore', name: 'Srinivas Rao', contact: '8401234567', role: 'Seller' },
+            { state: 'Andhra Pradesh', city: 'Tirupati', name: 'Shyam Sundar', contact: '8590123456', role: 'Seller' },
+            { state: 'Andhra Pradesh', city: 'Kakinada', name: 'Lakshmi Reddy', contact: '8776789012', role: 'Seller' },
+        
+            // Uttarakhand
+            { state: 'Uttarakhand', city: 'Dehradun', name: 'Ravi Kumar', contact: '9900000003', role: 'Seller' },
+            { state: 'Uttarakhand', city: 'Haridwar', name: 'Sunita Joshi', contact: '9800000004', role: 'Seller' },
+            { state: 'Uttarakhand', city: 'Nainital', name: 'Vikram Negi', contact: '9700000005', role: 'Seller' },
+            { state: 'Uttarakhand', city: 'Rudrapur', name: 'Neha Rawat', contact: '9600000006', role: 'Seller' },
+            { state: 'Uttarakhand', city: 'Haldwani', name: 'Shivendra Rawat', contact: '9500000007', role: 'Seller' },
+            { state: 'Uttarakhand', city: 'Kotdwar', name: 'Pooja Sharma', contact: '9400000008', role: 'Seller' },
+        
+            // Jharkhand
+            { state: 'Jharkhand', city: 'Ranchi', name: 'Arjun Kumar', contact: '8000000009', role: 'Seller' },
+            { state: 'Jharkhand', city: 'Jamshedpur', name: 'Nisha Agarwal', contact: '8500000010', role: 'Seller' },
+            { state: 'Jharkhand', city: 'Dhanbad', name: 'Ravi Singh', contact: '9000000011', role: 'Seller' },
+            { state: 'Jharkhand', city: 'Bokaro', name: 'Neha Gupta', contact: '9100000012', role: 'Seller' },
+            { state: 'Jharkhand', city: 'Deoghar', name: 'Anil Yadav', contact: '9200000013', role: 'Seller' },
+            { state: 'Jharkhand', city: 'Hazaribagh', name: 'Ravi Kumar', contact: '9300000014', role: 'Seller' },
+        
+            // Chhattisgarh
+            { state: 'Chhattisgarh', city: 'Raipur', name: 'Ajay Sharma', contact: '8500000015', role: 'Seller' },
+            { state: 'Chhattisgarh', city: 'Bilaspur', name: 'Neha Yadav', contact: '8600000016', role: 'Seller' },
+            { state: 'Chhattisgarh', city: 'Durg', name: 'Vikram Yadav', contact: '8700000017', role: 'Seller' },
+            { state: 'Chhattisgarh', city: 'Bhilai', name: 'Pooja Patel', contact: '8800000018', role: 'Seller' },
+            { state: 'Chhattisgarh', city: 'Korba', name: 'Sunil Tiwari', contact: '8900000019', role: 'Seller' },
+            { state: 'Chhattisgarh', city: 'Raigarh', name: 'Karan Soni', contact: '9000000020', role: 'Seller' },
+        
+            // Himachal Pradesh
+            { state: 'Himachal Pradesh', city: 'Shimla', name: 'Ravi Singh', contact: '9500000021', role: 'Seller' },
+            { state: 'Himachal Pradesh', city: 'Dharamshala', name: 'Anita Sharma', contact: '9400000022', role: 'Seller' },
+            { state: 'Himachal Pradesh', city: 'Kullu', name: 'Vikram Thakur', contact: '9300000023', role: 'Seller' },
+            { state: 'Himachal Pradesh', city: 'Manali', name: 'Suresh Kumar', contact: '9200000024', role: 'Seller' },
+            { state: 'Himachal Pradesh', city: 'Solan', name: 'Kajal Kumari', contact: '9100000025', role: 'Seller' },
+            { state: 'Himachal Pradesh', city: 'Mandi', name: 'Nitin Kumar', contact: '9000000026', role: 'Seller' },
+        ];
+        
+    
+        
+    
+       
+        const stateCityMap = {
+            'Maharashtra': ['Mumbai', 'Nagpur', 'Pune', 'Nashik'],
+            'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot'],
+            'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Agra', 'Varanasi'],
+            'Rajasthan': ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota'],
+            'Telangana': ['Hyderabad', 'Warangal', 'Nizamabad', 'Khammam'],
+            'Punjab': ['Chandigarh', 'Amritsar', 'Ludhiana', 'Jalandhar'],
+            'West Bengal': ['Kolkata', 'Siliguri', 'Howrah', 'Durgapur'],
+            'Karnataka': ['Bangalore', 'Mysore', 'Mangalore', 'Hubli'],
+            'Haryana': ['Gurgaon', 'Karnal', 'Panipat', 'Ambala'],
+            'Bihar': ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur']
+        };
+    
+       
+        const stateSelect = document.getElementById('state');
+        const citySelect = document.getElementById('city');
+    
+        stateSelect.addEventListener('change', function () {
+            const selectedState = this.value;
+            citySelect.innerHTML = '<option value="">Select City</option>'; 
+    
+            if (selectedState) {
+                const cities = stateCityMap[selectedState];
+                cities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+            }
+        });
+    
+        
+        const form = document.getElementById('location-form');
+        const resultsSection = document.getElementById('results');
+        const buyersList = document.getElementById('buyers-list');
+        const sellersList = document.getElementById('sellers-list');
+    
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            const selectedCity = citySelect.value;
+            if (!selectedCity) {
+                alert('Please select a city.');
+                return;
+            }
+    
+        
+            buyersList.innerHTML = '';
+            sellersList.innerHTML = '';
+    
+        
+            const filteredBuyers = buyers.filter(buyer => buyer.city === selectedCity);
+            const filteredSellers = sellers.filter(seller => seller.city === selectedCity);
+    
+            if (filteredBuyers.length === 0 && filteredSellers.length === 0) {
+                alert('No buyers or sellers found for this city.');
+            } else {
+                filteredBuyers.forEach(buyer => {
+                    const li = document.createElement('li');
+                    li.textContent = `${buyer.name} (Contact: ${buyer.contact})`;
+                    buyersList.appendChild(li);
+                });
+    
+                filteredSellers.forEach(seller => {
+                    const li = document.createElement('li');
+                    li.textContent = `${seller.name} (Product: ${seller.product}, Contact: ${seller.contact})`;
+                    sellersList.appendChild(li);
+                });
+    
+        
+                resultsSection.style.display = 'block';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

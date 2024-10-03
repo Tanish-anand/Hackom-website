@@ -1,0 +1,115 @@
+@import url(https://db.onlinewebfonts.com/c/43b09078caf10c8e7d64754567ebc261?family=Agrozza+Demo);
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    overflow: hidden;
+}
+.imgbg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(126, 16, 16, 0.219);
+    background-image: url(BG.jpg);
+    filter: blur(4px);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.288);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.member{
+    width: 20%;
+    height: 70%;
+    /* background-color: black; */
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Agrozza Demo";
+    letter-spacing: 1.8px;
+    color: white;
+    text-shadow: 2px 3px 9px black;
+    font-size: 13px;
+}
+.pic img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 1px solid black;
+    box-shadow: 2px 3px 10px black;
+    margin-bottom: 10%;
+}
+.head{
+    width: 100%;
+    height: 13%;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    left: 0;
+}
+.underline{
+    height: 1px;
+    width: 94%;
+    bottom: -7%;
+    left: 3%;
+    position: absolute;
+    background-color: white;
+    filter: blur(1px);
+}
+.menu{
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1px;
+    z-index: 1110 ;
+    font-size: x-large;
+}
+.logo{
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    height: 80%;
+    width: 7%;
+    /* background-color: blueviolet; */
+    background-image: url(PIC\ DPS/logo.png);
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: color-burn;
+}
+
+.logo svg{
+    height: 70%;
+    width: 5%;
+    font-weight: 900;
+    margin-right: 50px;
+}
